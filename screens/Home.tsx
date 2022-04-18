@@ -1,20 +1,20 @@
 import React from 'react';
-import { SafeAreaView,ScrollView,StyleSheet } from 'react-native';
+import { SafeAreaView,ScrollView,StyleSheet, Image } from 'react-native';
 import { Box, Text, theme } from '../components'
-import { Feather as Icon } from '@expo/vector-icons';
 import albumCategory from '../data/albumCategory';
+import topCategory from '../data/topCategory';
+import bottomCategory from '../data/bottomCategory';
+import extrabottomCategory from '../data/extrabottomCategory';
 
 
 const Header = ({title, iconName}: {title:string, iconName?: string}) => {
     return(
       <Box>
-      <Box marginHorizontal="m" height={60} flexDirection="row" alignItems="center" justifyContent="space-between">
+      <Box marginHorizontal="s" height={10} flexDirection="row" alignItems="center" justifyContent="space-between">
       
       
       <Text variant="hero">{title}</Text>
-      {iconName ?
-      <Icon name ={iconName} size={26} color={theme.colors.text}/>
-        :null}
+      
       </Box>
       </Box>
     )
@@ -26,14 +26,15 @@ const Home = () => {
         <SafeAreaView style={styles.container}>
           <ScrollView>
           <Box marginVertical="l" >
-          <Header title='Recently Played' iconName="align-justify"></Header>
+          <Header title='' iconName="align-justify"></Header>
           </Box>
+
           <Box>
             <ScrollView>
               {albumCategory.map((item, i) => {
                 return (
-                  <Box key={i}>
-                    <Text marginVertical="m" variant="title1" marginHorizontal="m" color="text">
+                  <Box key={i} marginVertical="xs">
+                    <Text marginVertical="xs" variant="title1" marginHorizontal="xs" color="text">
                       {item.title}
                     </Text>
                     <Box>
@@ -41,11 +42,8 @@ const Home = () => {
                         {item.albums.map((aItem,i) => {
                           return (
                             <Box margin="s">
-                              <Image style={styles.thumbImage} source={{uri: aItem.imageUri}}/>
+                              <Image style={styles.xyImage} source={{uri: aItem.imageUri}}/>
                               <Box width={120} marginVertical="s">
-                              <Text variant="body">{aItem.artistsHeadline}</Text>
-                              <Text variant="small">{aItem.time}</Text>
-                              <Text variant="small">{aItem.creator}</Text>
                               </Box>
                             </Box>
                           )
@@ -57,6 +55,100 @@ const Home = () => {
               })}
             </ScrollView>
           </Box>
+
+          <Box>
+            <ScrollView>
+              {topCategory.map((topitem,t) => {
+                return (
+                  <Box key={t}>
+                    <Text marginVertical="s" variant="title1" marginHorizontal="s" color="text">
+                      {topitem.title}
+                    </Text>
+                    <Box>
+                      <ScrollView showsHorizontalScrollIndicator={false} horizontal={true}>
+                        {topitem.top.map((tItem,t) => {
+                          return (
+                            <Box margin="s">
+                              <Image style={styles.thumbImage} source={{uri: tItem.imageUri}}/>
+                              <Box width={120} marginVertical="m">
+                              <Text variant="title3" marginBottom='s'>{tItem.artistsHeadline}</Text>
+                              <Text variant="small1">{tItem.time}</Text>
+                              <Text variant="small1">{tItem.creator}</Text>
+                              </Box>
+                            </Box>
+                          )
+                        })}
+                        </ScrollView>
+                    </Box>
+                  </Box>
+                )
+              })}
+            </ScrollView>
+          </Box>
+
+
+
+          <Box>
+            <ScrollView>
+              {bottomCategory.map((bottomItem,b) => {
+                return (
+                  <Box key={b}>
+                    <Text marginVertical="m" variant="title1" marginHorizontal="s" color="text">
+                      {bottomItem.title}
+                    </Text>
+                    <Box>
+                      <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} scrollEnabled={false}>
+                        {bottomItem.bottom.map((bItem,b) => {
+                          return (
+                            <Box margin="s" marginBottom='xs'>
+                              <Image style={styles.abImage} source={{uri: bItem.imageUri}}/>
+                              <Box width={120} marginVertical="m">
+                              <Text variant="title3" marginBottom='s' textAlign='center'>{bItem.artistsHeadline}</Text>
+                              <Text variant="small1" textAlign='center'>{bItem.episodes}</Text>
+                              </Box>
+                            </Box>
+                          )
+                        })}
+                        </ScrollView>
+                    </Box>
+                  </Box>
+                )
+              })}
+            </ScrollView>
+          </Box>
+
+
+
+          <Box>
+            <ScrollView>
+              {extrabottomCategory.map((bottomItem,b) => {
+                return (
+                  <Box key={b}>
+                    <Box>
+                      <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} scrollEnabled={false}>
+                        {bottomItem.extrabottom.map((bItem,b) => {
+                          return (
+                            <Box margin="s">
+                              <Image style={styles.abImage} source={{uri: bItem.imageUri}}/>
+                              <Box width={120} marginVertical="m">
+                              <Text variant="title3" marginBottom='s' textAlign='center'>{bItem.artistsHeadline}</Text>
+                              <Text variant="small1" textAlign='center'>{bItem.episodes}</Text>
+                              </Box>
+                            </Box>
+                          )
+                        })}
+                        </ScrollView>
+                    </Box>
+                  </Box>
+                )
+              })}
+            </ScrollView>
+          </Box>
+
+          
+
+        
+
           </ScrollView>
         </SafeAreaView>
     )
@@ -68,8 +160,16 @@ const styles = StyleSheet.create({
       backgroundColor: theme.colors.primary, 
     },
     thumbImage: {
-      height: 120,
-      width: 120
+      height: 140,
+      width: 140
+    },
+    abImage: {
+      height: 100,
+      width: 100,
+    },
+    xyImage: {
+      height: 200,
+      width: 300,
     }
   });
 

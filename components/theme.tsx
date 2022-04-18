@@ -10,14 +10,15 @@ type NamedStyles<T> = {[P in keyof T]: ViewStyle | TextStyle};
 
 export const theme ={
     colors : {
-        primary : 'rgb(28,28,30)',
-        background : 'rgb(28,28,30)',
+        primary : 'rgb(61,61,63)',
+        background : 'rgb(61,61,63)',
         card : 'rgb(255,255,255)',
         text : 'rgb(255,255,255)',
         border : 'rgb(199,199,204)',
         notification : 'rgb(255,69,58)'
     },
     spacing: {
+        xs:3,
         s: 8,
         m: 16,
         l: 24,
@@ -39,7 +40,6 @@ export const theme ={
         },
         title1: {
             fontSize: 28,
-            fontWeight: 'bold',
             color: "border",
         },
         title2:{
@@ -48,11 +48,23 @@ export const theme ={
 
             color: "text",
         },
+        title3:{
+            fontSize: 14,
+            lineHeight:15,
+
+            fontWeight: "bold",
+            color: "text",
+        },
         body:{
             fontSize: 16,
             lineHeight:24,
             fontWeight: "bold",
             color: "text",
+        },
+        small1:{
+            fontSize: 10,
+            lineHeight: 13,
+            color: "border",
         },
         small:{
             fontSize: 7,

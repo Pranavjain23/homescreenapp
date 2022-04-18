@@ -40,8 +40,6 @@ export default function App() {
             ? 'premium-outline'
             : 'premium-outline';
           }
-
-          return <Ionicons name={iconName} size={size} color={color}/>;
         },
       })}
       tabBarOptions={{
